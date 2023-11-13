@@ -1,0 +1,546 @@
+/* Main Custom */
+:root {
+    --main-color: #B9D2E9;
+    --second-color: #2672B3;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.sorting .active {
+    background-color: var(--second-color);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.color-one {
+    color: var(--main-color);
+}
+
+.back-one {
+    background-color: var(--main-color);
+}
+a.back-one:hover,
+.hover.back-one:hover {
+    background-color: var(--second-color);
+    color: white;
+    transition: .3s;
+}
+
+.color-two {
+   color: var(--second-color);
+}
+
+.back-two {
+   background-color: var(--second-color);
+}
+
+.msg {
+    transition: .3s;
+    opacity: 1;
+}
+
+.error-msg {
+    color: tomato;
+}
+.success-msg {
+    color: #4CAF50;
+}
+
+.error-msg, .success-msg {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0;
+    margin-bottom: 0;
+}
+.error-msg:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+
+.hiddenEle {
+    display: none !important;
+}
+
+.showEle {
+    display: grid !important;
+}
+
+.astrick {
+    color: tomato;
+    font-size: 18px;
+    position: absolute;
+    right: 10px;
+    top: 25%;
+    z-index: 9999999999;
+}
+
+.main-title {
+    color: var(--second-color);
+    font-size: 50px;
+    position: relative;
+    text-align: center;
+    width: fit-content;
+    margin: 40px auto;
+    user-select: none;
+}
+
+.main-title::after {
+    content: '';
+    width: 50%;
+    height: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0px;
+    background-color: var(--second-color);
+}
+
+ul {
+    list-style: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #a2a2a2 !important;
+}
+
+a {
+    text-decoration: none;
+}
+/* End Main Custom */
+
+/*  Header  */
+header .navbar-collapse {
+    flex-grow: 0 !important;
+}
+header .navbar-nav .main-link  {
+    position: relative;
+    font-weight: bold;
+    padding: 0 !important;
+    margin-right: 20px !important;
+    font-size: 18px;
+}
+
+header .navbar-nav .main-link:hover, .main-link.active {
+    color: var(--second-color) !important;
+}
+
+header .navbar-nav .main-link::after, .main-link.active::after {
+    content: '';
+    height: 2px;
+    width: 0%;
+    background-color: var(--second-color);
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    transition: .3s;
+}
+
+header .navbar-nav .main-link:hover::after, .active::after  {
+    width: 100% !important;
+}
+/* End Header  */
+/* Hero  */
+.hero {
+    padding-bottom: 100px !important;
+    height: calc(100vh - 100px);
+}
+
+.hero .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero .container > img {
+    width: 800px;
+    max-width: 100%;
+    height: 500px;
+}
+
+.hero .content {
+    width: 800px;
+    max-width: 100%;
+    text-align: left;
+}
+
+.hero h2 {
+   margin: 10px auto;
+   color: var(--second-color);
+}
+
+.hero p {
+    color: #777;
+    line-height: 2;
+    font-size: 18px;
+    margin: 10px auto;
+}
+
+.hero a {
+    width: 200px;
+}
+.hero a:hover {
+    background-color: var(--second-color) !important;
+    color: white;
+}
+/* End Hero  */
+/* About  */
+.about {
+    padding-top: 50px;
+    padding-bottom: 100px !important;
+    height: calc(100vh - 72px);
+}
+
+.about .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about .container img {
+    width: 500px;
+}
+
+.about .content {
+    width: 700px;
+    max-width: 100%;
+}
+
+.about .content h2 {
+    font-size: 40px;
+    position: relative;
+    margin-bottom: 20px;
+    color: var(--second-color);
+}
+.about .content h2:after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    height: 3px;
+    width: 100px;
+    background-color: var(--second-color);
+}
+.about .content p {
+    color: #777;
+    font-size: 16px;
+    line-height: 2;
+}
+
+/* End About  */
+/* Contact  */
+.contact {
+    padding-top: 50px;
+    padding-bottom: 100px !important;
+    height: calc(100vh - 72px);
+}
+
+
+.contact .container .title {
+    font-size: 40px;
+    margin: 40px auto;
+    text-align: center;
+    position: relative;
+    width: fit-content;
+}
+.contact .container .title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 5px;
+    width: 100%;
+    background-color: var(--second-color);
+}
+
+.contact .container form {
+    height: fit-content;
+}
+.contact .container form textarea {
+    height: 200px;
+}
+
+/* End Contact  */
+/* Store Login  */
+.store {
+    height: calc(100vh - 73px) !important; 
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.store form {
+    margin: 0px auto;
+    padding: 20px;
+}
+
+.store form label {
+    color: var(--second-color);
+}
+
+.store form input[type='submit']:hover {
+    background-color: var(--second-color);
+    color: white;
+}
+
+/* End Login  */
+/* Bills  */
+.bills {
+    padding: 80px 0;
+}
+
+.bills .no-items i{
+    font-size: 100px ;
+}
+
+.bills .container .add-bill {
+    margin-bottom: 20px;
+}
+.bills .container .add-bill h1 {
+    position: relative;
+    width: fit-content;
+}
+
+.bills .container .add-bill h1::before {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--second-color);
+}
+
+.bills .container .bill-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+
+
+.bills .card {
+    border: 3px solid var(--second-color);
+    padding: 20px;
+}
+
+.bills .card-box {
+    
+    transition: .3s ease-in-out;
+}
+
+.bills .card-box:hover {
+    content: '';
+    transform: scale(0.98);
+}
+
+.bills .card .content ul span {
+    color: var(--second-color);
+}
+
+.bills .title img {
+    width: 80px;
+    height: 80px;
+}
+/* End Bills  */
+
+/* Create Bill  */
+.create-bill {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.create-bill .container {
+    display: flex;
+    justify-content: center;
+}
+
+/* End Create Bill */
+/* Bill  */
+.bills .show_bills {
+    padding: 80px 0;
+}
+
+.bills .show_bills {
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    min-height: 300px;
+}
+.bills .show_bills .info-box {
+    border: 2px solid var(--second-color);
+    position: relative;
+    overflow: hidden;
+}
+.bills .show_bills .info-box .show-more {
+    content: '';
+    width: 100%;
+    height: 0%;
+    background-color: #15558dae;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    transition: .3s;
+    overflow: hidden;
+    font-weight: bold;
+}
+.bills .show_bills .info-box:hover .show-more {
+    height: 100%;
+} 
+.bills .show_bills .logo img {
+    width: 80px;
+    height: 80px;
+}
+
+.bills .show_bills .content {
+    background-color: var(--main-color);
+    color: var(--second-color);
+}
+
+.bills .show_bills .content ul li {
+    margin-bottom: 10px;
+}
+
+.bills .show_bills .content ul li span {
+    font-weight: bold;
+}
+.bills .not-found {
+    text-align: center;
+}
+
+.bills .not-found p {
+    color: var(--second-color);
+    user-select: none;
+}
+.bills .not-found img {
+    width: 400px;
+}
+/* End Bill  */
+/* Show Bill */
+
+.bill-info {
+    padding: 100px 0;
+}
+
+
+.bill-info .info-box {
+    margin-bottom: 20px;
+}
+
+.bill-info .content {
+    background-color: var(--second-color);
+    color: #eee;
+    padding: 0;
+}
+
+.bill-info .content li {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.bill-info .content li span {
+    font-weight: bold;
+}
+
+.bill-info .logo img {
+    width: 100px;
+    height: 100px;
+}
+
+
+.bill-info table {
+    border-top: 5px solid var(--second-color);
+    margin-bottom: 10px;
+    margin-top: 40px;
+
+}
+
+
+/* End Show Bill */
+/* Payment  */
+.payment input[type='submit']:hover {
+    background-color: #15558d !important;
+}
+
+.sub-card a:hover {
+    background-color: #15558d !important;
+}
+
+.add-pro i {
+    cursor: pointer;
+    color: tomato;
+    background-color: #fff;
+    border-radius: 50%;
+}
+/* End Payment */
+/* Start User Bill Info  */
+.user-billinfo {
+    padding-bottom: 100px;
+}
+
+.user-billinfo .title {
+    cursor: pointer;
+}
+
+.user-billinfo .container .info-boxes .info-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.user-billinfo .container .info-boxes:not(:last-child) {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 40px !important;
+}
+
+
+.user-billinfo .info-box .show-more {
+    content: '';
+    width: 100%;
+    height: 0%;
+    background-color: #15558dae;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    transition: .3s;
+    overflow: hidden;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.user-billinfo .info-box a:hover .show-more {
+    height: 100%;
+} 
+
+.user-billinfo .info-box img {
+    width: 100px;
+    height: 100px;
+}
+
+.user-billinfo .content {
+    background-color: var(--main-color);
+    color: var(--second-color);
+}
+
+.user-billinfo .content ul li {
+    margin-bottom: 10px;
+}
+
+.user-billinfo .content ul li span {
+    font-weight: bold;
+}
+/* End User Bill Info  */
