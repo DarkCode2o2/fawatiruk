@@ -6,6 +6,6 @@
 
     session_destroy();
 
-    header("Location: /fawatiruk/index.php");
+    header("Location: /index.php");
     exit;
 ?>

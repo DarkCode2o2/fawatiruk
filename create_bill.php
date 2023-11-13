@@ -3,7 +3,7 @@
     require 'connect.php';
 
     if(!isset($_SESSION['s_id']) || $_SESSION['is_sub'] != 1) {
-        header('location: /fawatiruk/index.php');
+        header('location: /index.php');
         exit;
     }
 
@@ -87,7 +87,6 @@
                     $_POST['phone_number'] = '';
                     $_POST['description'] = '';
 
-                   // header("Refresh: 3; url=/fawatiruk/bills.php");
 
                 }
 

@@ -3,7 +3,7 @@
     require '../connect.php';
 
     if(isset($_SESSION['store_name'])) {
-        header('location: /fawatiruk/bills.php');
+        header('location: /bills.php');
         exit;
     }
 
@@ -31,7 +31,7 @@
                 $_SESSION['phone'] = $userInfo[0]['phone_number'];
                 $successMsg = 'Loggedin Successfully';
 
-                header('Refresh: 3; url=/fawatiruk/bills.php');
+                header('Refresh: 3; url=/bills.php');
             }else {
                 $errormsg_password = 'Sorry, this password deson\'t exist';
             }

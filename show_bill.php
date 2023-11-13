@@ -20,13 +20,13 @@
         $count = $get->rowCount();
 
         if(!$count) {
-            header("location: /fawatiruk/index.php");
+            header("location: /index.php");
             exit;
         }
 
         $billInfo = $get->fetchAll();
     }else {
-        header("location: /fawatiruk/index.php");
+        header("location: /index.php");
         exit;
     }
 

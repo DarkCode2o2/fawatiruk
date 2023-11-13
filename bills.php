@@ -136,7 +136,7 @@
                                 Add products and prices: You can manage your product database, register new products and update prices easily, making the process of creating invoices easier and easier.
                             </li>
                         </ul>
-                        <a href="/fawatiruk/payment.php" class="btn back-two text-light shadow-sm fw-bold">Subsicribe now!</a>
+                        <a href="/payment.php" class="btn back-two text-light shadow-sm fw-bold">Subsicribe now!</a>
                     </div>
             <?php } ?>
         <?php }else { ?>
