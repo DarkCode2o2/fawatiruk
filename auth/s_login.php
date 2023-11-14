@@ -30,7 +30,7 @@
                 $_SESSION['s_id'] = $storeInfo[0]['s_id'];
                 $_SESSION['store_name'] = $storeInfo[0]['s_name'];
                 $_SESSION['is_sub'] = $storeInfo[0]['is_sub'];
-                $successMsg = 'Loggedin Successfully';
+                $successMsg = 'Logged Successfully';
                 header('Refresh: 3; url=/bills.php');
             }else {
                 $errormsg_password = 'Sorry, this password deson\'t exist';

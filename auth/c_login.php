@@ -30,7 +30,7 @@
                 $_SESSION['user_id'] = $userInfo[0]['c_id'];
                 $_SESSION['username'] = $userInfo[0]['username'];
                 $_SESSION['phone'] = $userInfo[0]['phone_number'];
-                $successMsg = 'Loggedin Successfully';
+                $successMsg = 'Logged Successfully';
 
                 header('Refresh: 3; url=/bills.php');
             }else {
