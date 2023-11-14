@@ -14,6 +14,15 @@
     
         }
         elseif(isset($_SESSION['username'])) {
+            $idArr = [];
+            $get = $con->prepare("SELECT bill.store_id AS id FROM bill");
+            $get->execute(array());
+            $storesid = $get->fetchAll();
+
+            foreach($storesid as $id) {
+                $idArr[] = $id['id'];
+            }
+
 
             $sql = $con->prepare("SELECT * FROM store");
 
@@ -45,7 +54,7 @@
             }
         }
     
-        $sort = 'ASC';
+        $sort = 'DESC';
         $sort_array = array('ASC', 'DESC');
     
         if(isset($_GET['sort']) && in_array($_GET['sort'], $sort_array)) {
@@ -58,6 +67,12 @@
             $stmt->execute(array($_SESSION['s_id']));
     
             $allBills = $stmt->fetchAll();
+        }
+
+        if(!isset($allBills) && isset($_SESSION['s_id'])) {
+            $stmt = $con->prepare("SELECT * FROM bill WHERE store_id = ? ORDER BY b_id $sort LIMIT 5");
+            $stmt->execute(array($_SESSION['s_id']));
+            $latestBills = $stmt->fetchAll();
         }
     
     }else {
@@ -77,25 +92,28 @@
                         <a href="create_bill.php" class="btn btn-sm back-one fw-bold ms-2">Create bill</a>
                     </form>
 
-                        <?php if(!empty($allBills)) { ?>
-                            <div class="sorting mt-4 mb-2">
-                                <i class="fa fa-sort"></i> <span class="">Sorting:</span>
-                                <a href="?search=<?php echo $search?>&sort=ASC" class="<?php echo $sort == 'ASC' ? 'active' : ''?>">ASC</a> |
-                                <a href="?search=<?php echo $search?>&sort=DESC" class="<?php echo $sort == 'DESC' ? 'active' : ''?>">DESC</a>
-                            </div>
-                            <div class="show_bills mx-auto back-one p-4 mb-4 rounded shadow-sm">
-                                    <?php foreach($allBills as $billInfo):?>
-                                        <a href="show_bill.php?bill=<?php echo $billInfo['b_id'] ?>" class="info-box mt-4 p-4 bg-white shadow-sm rounded">
+                    <!-- Latest Bills  -->
+                    <?php if(!isset($allBills)) { ?>
+                        <div class="sorting mt-4 mb-2">
+                            <i class="fa fa-sort"></i> <span class="">Sorting:</span>
+                            <a href="?sort=ASC" class="<?php echo $sort == 'ASC' ? 'active' : ''?>">ASC</a> |
+                            <a href="?sort=DESC" class="<?php echo $sort == 'DESC' ? 'active' : ''?>">DESC</a>
+                        </div>
+                        <div class="latest-bills back-one p-4  rounded shadow-sm">
+                            <p class="color-two h2">Latest Bills</p>
+                            <div class="show_bills mx-auto py-0">
+                                    <?php foreach($latestBills as $billInfo):?>
+                                        <a href="show_bill.php?bill=<?php echo $billInfo['b_id'] ?>" class="info-box mt-4 p-2 bg-white shadow-sm rounded d-flex justify-content-between flex-column">
                                             <div class="logo d-flex justify-content-between align-items-center mb-4">
                                                 <div class="right text-center">
-                                                    <img src="images/logo.png" alt="" class="img-fluid rounded-circle shadow-sm mb-2">
+                                                    <img src="images/logo.png" class="img-fluid rounded-circle shadow-sm mb-2">
                                                     <p class="color-two fw-bold">Fawatiruk</p>
                                                 </div>
                                                 <div class="left fs-4 color-two fw-bold">
                                                     <?php echo $billInfo['b_id'] ?>#
                                                 </div>
                                             </div>
-                                            <div class="content p-4 rounded">
+                                            <div class="content p-2 rounded">
                                                 <ul class="p-0">
                                                     <li>Phone number: <span> <?php echo $billInfo['phone_number'] ?></span></li>
                                                     <li>Description: <span><?php echo $billInfo['description'] ? $billInfo['description'] : "There is no description"?></span></li>
@@ -105,14 +123,46 @@
                                             <span class="show-more">Show more <i class="fa-solid fa-expand fs-1"></i></span>
                                         </a>
                                     <?php endforeach;?>
+                            </div>
+                        </div>
+                    <?php } ?>
+                        
+                        <?php if(!empty($allBills)) { ?>
+                            <div class="sorting mt-4 mb-2">
+                                <i class="fa fa-sort"></i> <span class="">Sorting:</span>
+                                <a href="?search=<?php echo $search?>&sort=ASC" class="<?php echo $sort == 'ASC' ? 'active' : ''?>">ASC</a> |
+                                <a href="?search=<?php echo $search?>&sort=DESC" class="<?php echo $sort == 'DESC' ? 'active' : ''?>">DESC</a>
+                            </div>
+                                <div class="show_bills mx-auto back-one p-4 mb-4 rounded shadow-sm">
+                                        <?php foreach($allBills as $billInfo):?>
+                                            <a href="show_bill.php?bill=<?php echo $billInfo['b_id'] ?>" class="info-box mt-4 p-2 bg-white shadow-sm rounded d-flex justify-content-between flex-column">
+                                            <div class="logo d-flex justify-content-between align-items-center mb-4">
+                                                <div class="right text-center">
+                                                    <img src="images/logo.png" class="img-fluid rounded-circle shadow-sm mb-2">
+                                                    <p class="color-two fw-bold">Fawatiruk</p>
+                                                </div>
+                                                <div class="left fs-4 color-two fw-bold">
+                                                    <?php echo $billInfo['b_id'] ?>#
+                                                </div>
+                                            </div>
+                                            <div class="content p-2 rounded">
+                                                <ul class="p-0">
+                                                    <li>Phone number: <span> <?php echo $billInfo['phone_number'] ?></span></li>
+                                                    <li>Description: <span><?php echo $billInfo['description'] ? $billInfo['description'] : "There is no description"?></span></li>
+                                                    <li>Date: <span><?php echo $billInfo['date'] ?></span></li>
+                                                </ul>
+                                            </div>
+                                            <span class="show-more">Show more <i class="fa-solid fa-expand fs-1"></i></span>
+                                        </a>
+                                        <?php endforeach;?>
                                 </div>
                             <?php }else { ?>
                                 <?php 
                                     if(isset($allBills)) { ?>
                                     
                                     <div class="not-found mt-4">
-                                            <p class='h1 text-center'> Can't find (<?php echo $_GET['search'] ?> )</p>
-                                            <img class="img-fluid " src='images/not_found.avif'>
+                                        <p class='h1 text-center'> Can't find (<?php echo $_GET['search'] ?> )</p>
+                                        <img class="img-fluid " src='images/not_found.avif'>
                                     </div>
 
                                     <?php }?>
@@ -143,16 +193,19 @@
             <div class="user-billinfo">
                 <div class="container">
                     <p class="main-title">All Bills</p>
-                    <?php foreach($storesName as $store):?>
-                        <div class="info-boxes bg-light p-4 rounded shadow-sm bg-light  rounded">  
-                            <h2 class="title mb-4 color-two" id="<?php echo $store['s_id']?>">
-                                <?php echo $store['s_name']?><i class="arrow-title fa-solid fa-chevron-down ms-2 fs-3"></i>
-                            </h2>
-                            <div class="info-box">
+                    <?php foreach($storesName as $store):
+                        if(in_array($store['s_id'], $idArr)):
+                        ?>
+                            <div class="info-boxes bg-light p-4 rounded shadow-sm bg-light  rounded">  
+                                <h2 class="title mb-4 color-two" id="<?php echo $store['s_id']?>">
+                                    <?php echo $store['s_name']?><i class="arrow-title fa-solid fa-chevron-down ms-2 fs-3"></i>
+                                </h2>
+                                <div class="info-box">
 
+                                </div>
                             </div>
-                        </div>                        
-                    <?php endforeach;?>
+                    <?php endif;
+                        endforeach;?>
      
                 </div>
             </div>

@@ -24,7 +24,7 @@
 ?>
 
     <div class="container d-flex justify-content-center align-items-center mt-4">
-        <div class="payment p-4 mt-4 shadow rounded back-one w-50">
+        <div class="payment p-4 mt-4 shadow rounded back-one col-lg-6 col-md-8 col-12">
             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
                 <h1>Confirm Your Payment</h1>
                 <div class="first-row my-4">
@@ -41,17 +41,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="second-row d-flex justify-content-between">
-                    <div class="cvv col-6 me-2">
+                <div class="second-row d-flex justify-content-between flex-md-row flex-column">
+                    <div class="cvv col-md-6 col-12 me-2">
                         <h3 class="h4">CVC</h3>
                         <div class="">
                             <input type="text" class="form-control" required placeholder="XXX">
                         </div>
                     </div>
-                    <div class="selection col-6 ">
-                        <h3 class="h4">Expiration date</h3>
+                    <div class="selection col-md-6 col-12 ">
+                        <h3 class="h4 mt-md-0 mt-4">Expiration date</h3>
                         <div class="date d-flex justify-content-center">
-                        <input type="date" class="form-control" required placeholder="00/00">
+                        <input type="date" class="form-control mt-md-0 mb-2" required placeholder="00/00">
                     </div>
                 </div>
                 </div>

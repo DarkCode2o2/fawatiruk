@@ -74,7 +74,7 @@
                     <li>From store: <span><?php echo $billInfo[0]['s_name']?></span></li>
                     <?php if(!empty($billInfo[0]['warranty_period'])):
                             if($diffInDays < 5) { ?>
-                                <li>Warranty: <span class="bg-light p-2 rounded" style="color:#E91E63;"> <?php echo $diffInDays?> days left until the warranty expires</span></li>
+                                <li>Warranty: <span class="bg-light p-2 rounded d-md-inline d-block warranty" style="color:#E91E63;"> <?php echo $diffInDays?> days left until the warranty expires</span></li>
                            <?php }else { ?>
                                 <li>Warranty: <span> <?php echo $diffInDays?> days left until the warranty expires </span></li>
                             <?php }?>

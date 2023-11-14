@@ -404,9 +404,10 @@ header .navbar-nav .main-link:hover::after, .active::after  {
 .bills .show_bills .content {
     background-color: var(--main-color);
     color: var(--second-color);
+    height: 100%;
 }
 
-.bills .show_bills .content ul li {
+.bills .show_bills .content ul li:not(:last-of-type) {
     margin-bottom: 10px;
 }
 
@@ -448,6 +449,11 @@ header .navbar-nav .main-link:hover::after, .active::after  {
 }
 .bill-info .content li span {
     font-weight: bold;
+    color: white ;
+}
+
+.bill-info .content li .warranty {
+    font-size: 14px;
 }
 
 .bill-info .logo img {

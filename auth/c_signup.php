@@ -2,6 +2,11 @@
     require '../header.php';
     include '../connect.php';
 
+    if(isset($_SESSION['s_id']) || isset($_SESSION['user_id'])) {
+        header('location: /bills.php');
+        exit;
+    }
+
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 

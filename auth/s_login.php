@@ -2,10 +2,11 @@
     require '../header.php';
     require '../connect.php';
 
-    if(isset($_SESSION['store_name'])) {
+    if(isset($_SESSION['s_id']) || isset($_SESSION['user_id'])) {
         header('location: /bills.php');
         exit;
     }
+
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cr = $_POST['cr_number'];
