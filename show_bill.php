@@ -42,7 +42,7 @@
         $currentTimestamp = strtotime($currentDate);
     
       
-        if($expiryTimestamp < $currentTimestamp) {
+        if($expiryTimestamp <= $currentTimestamp) {
             $expiryTimestamp = 0;
         }else {
             $diffInSeconds = $expiryTimestamp - $currentTimestamp;
@@ -73,9 +73,11 @@
                 <ul class="p-0">
                     <li>From store: <span><?php echo $billInfo[0]['s_name']?></span></li>
                     <?php if(!empty($billInfo[0]['warranty_period'])):
-                            if($diffInDays < 5) { ?>
+                            if($diffInDays <= 7 && $diffInDays >= 1) { ?>
                                 <li>Warranty: <span class="bg-light p-2 rounded d-md-inline d-block warranty" style="color:#E91E63;"> <?php echo $diffInDays?> days left until the warranty expires</span></li>
-                           <?php }else { ?>
+                           <?php }elseif($diffInDays  == 0) { ?>
+                                
+                            <?php }else { ?>
                                 <li>Warranty: <span> <?php echo $diffInDays?> days left until the warranty expires </span></li>
                             <?php }?>
                         

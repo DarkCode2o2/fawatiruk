@@ -9,6 +9,10 @@
     margin: 0;
     box-sizing: border-box;
 }
+.sorting .sorting-btn {
+    cursor: pointer;
+}
+
 .sorting .active {
     background-color: var(--second-color);
     color: white;
@@ -195,7 +199,7 @@ header .navbar-nav .main-link:hover::after, .active::after  {
 
 .about .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -204,7 +208,7 @@ header .navbar-nav .main-link:hover::after, .active::after  {
 }
 
 .about .content {
-    width: 700px;
+    width: 600px;
     max-width: 100%;
 }
 

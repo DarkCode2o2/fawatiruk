@@ -14,21 +14,21 @@
     
         }
         elseif(isset($_SESSION['username'])) {
-            $idArr = [];
-            $get = $con->prepare("SELECT bill.store_id AS id FROM bill");
-            $get->execute(array());
-            $storesid = $get->fetchAll();
+          
+            $uniqueNames = [];
 
-            foreach($storesid as $id) {
-                $idArr[] = $id['id'];
-            }
+            $sql = $con->prepare("SELECT store.s_name, bill.* FROM store INNER JOIN bill ON bill.store_id = store.s_id WHERE bill.phone_number = ? ");
 
-
-            $sql = $con->prepare("SELECT * FROM store");
-
-            $sql->execute(array());
+            $sql->execute(array($_SESSION['phone']));
 
             $storesName = $sql->fetchAll();
+
+            foreach($storesName as $name) {
+                if(!in_array($name['s_name'], $uniqueNames)) {
+                    $uniqueNames[$name['store_id']] = $name['s_name'];
+                }
+            }
+
         }
 
         if(!empty($billsInfo)) {
@@ -100,7 +100,11 @@
                             <a href="?sort=DESC" class="<?php echo $sort == 'DESC' ? 'active' : ''?>">DESC</a>
                         </div>
                         <div class="latest-bills back-one p-4  rounded shadow-sm">
-                            <p class="color-two h2">Latest Bills</p>
+                            <div class="d-flex justify-content-between">
+                                <p class="color-two h3">Welcome <?php echo $_SESSION['store_name'] ?></p>
+                                <p class="color-two h3">Latest Bills</p>
+
+                            </div>
                             <div class="show_bills mx-auto py-0">
                                     <?php foreach($latestBills as $billInfo):?>
                                         <a href="show_bill.php?bill=<?php echo $billInfo['b_id'] ?>" class="info-box mt-4 p-2 bg-white shadow-sm rounded d-flex justify-content-between flex-column">
@@ -159,7 +163,6 @@
                             <?php }else { ?>
                                 <?php 
                                     if(isset($allBills)) { ?>
-                                    
                                     <div class="not-found mt-4">
                                         <p class='h1 text-center'> Can't find (<?php echo $_GET['search'] ?> )</p>
                                         <img class="img-fluid " src='images/not_found.avif'>
@@ -193,19 +196,22 @@
             <div class="user-billinfo">
                 <div class="container">
                     <p class="main-title">All Bills</p>
-                    <?php foreach($storesName as $store):
-                        if(in_array($store['s_id'], $idArr)):
+                    <div class="sorting mt-4 mb-2">
+                        <i class="fa fa-sort"></i> <span>Sorting:</span>
+                        <span class="sorting-btn active">ASC</span> |
+                        <span class="sorting-btn">DESC</span>
+                    </div>
+                    <?php foreach($uniqueNames as $key => $name):
                         ?>
                             <div class="info-boxes bg-light p-4 rounded shadow-sm bg-light  rounded">  
-                                <h2 class="title mb-4 color-two" id="<?php echo $store['s_id']?>">
-                                    <?php echo $store['s_name']?><i class="arrow-title fa-solid fa-chevron-down ms-2 fs-3"></i>
+                                <h2 class="title mb-4 color-two" id="<?php echo $key?>">
+                                    <?php echo $name?><i class="arrow-title fa-solid fa-chevron-down ms-2 fs-3"></i>
                                 </h2>
                                 <div class="info-box">
 
                                 </div>
                             </div>
-                    <?php endif;
-                        endforeach;?>
+                    <?php endforeach;?>
      
                 </div>
             </div>

@@ -1,7 +1,6 @@
 <?php require 'header.php'?>
     <div class="about ">
         <div class="container d-flex flex-lg-row flex-column gap-4 p-4">
-            <img src="images/about.svg" alt="" class="img-fluid mb-md-0 mb-4">
             <div class="content">
                 <h2>About Fawatiruk</h2>
                 <p>
@@ -12,6 +11,8 @@
                     Our all-inclusive platform ensures ease of registration and storage, allowing you to quickly and easily record invoice details and store them in a secure location. You can easily access your invoices through your preferred device, whether it's a mobile phone or personal computer.
                 </p>
             </div>
+            <img src="images/about.svg" alt="" class="img-fluid mb-md-0 mb-4">
+
         </div>
     </div>
 <?php require 'footer.php'?>
