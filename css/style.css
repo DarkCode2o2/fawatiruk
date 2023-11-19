@@ -374,7 +374,7 @@ header .navbar-nav .main-link:hover::after, .active::after  {
     justify-content: center;
     min-height: 300px;
 }
-.bills .show_bills .info-box {
+.bills a.info-box {
     border: 2px solid var(--second-color);
     position: relative;
     overflow: hidden;

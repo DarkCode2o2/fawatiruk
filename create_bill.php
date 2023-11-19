@@ -86,6 +86,7 @@
                     
                     $_POST['phone_number'] = '';
                     $_POST['description'] = '';
+
                 }
 
             }

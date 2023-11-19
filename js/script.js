@@ -139,40 +139,44 @@ function fetchData(ele, sortingType) {
             const addedIDs = [];
 
             data.forEach((element) => {
+
             const targetElement = document.getElementById(ele.id).nextElementSibling;
+
             // التحقق ما إذا كان الـ ID تم تضمينه بالفعل في الصندوق
             const index = addedIDs.indexOf(element.b_id);
+
             if (index == -1) {
+
                 // إضافة العنصر الجديد إلى صندوق جديد
                 targetElement.innerHTML += `
-                <a href="show_bill.php?bill=${element.b_id}" class="mt-4 p-4 bg-white shadow-sm rounded position-relative">
-                <div class="logo d-flex justify-content-between align-items-center mb-4">
-                <div class="right text-center">
-                    <img src="images/logo.png" alt="" class="img-fluid rounded-circle shadow-sm mb-2">
-                    <p class="color-two fw-bold">Fawatiruk</p>
-                </div>
-                <div class="left fs-4 color-two fw-bold">
-                    ${element.b_id}#
-                </div>
-            </div>
-            <div class="content p-4 rounded">
-                <ul class="p-0">
-                    <li>Phone number: <span> ${element.phone_number} </span></li>
-                    <li>Description: <span>${element.description ? element.description : 'There is no description'}</span></li>
-                    <li>Date: <span>${element.date}</span></li>
-                </ul>
-            </div>
-            <span class="show-more">Show more <i class="fa-solid fa-expand fs-1"></i></span>
-                </a>
-                `;
+                    <a href="show_bill.php?bill=${element.b_id}" class="info-box mt-4 p-2 bg-white shadow-sm rounded d-flex justify-content-between flex-column position-relative">
+                        <div class="logo d-flex justify-content-between align-items-center mb-4">
+                        <div class="right text-center">
+                            <img src="images/logo.png" alt="" class="img-fluid logo rounded-circle shadow-sm mb-2">
+                            <p class="color-two fw-bold">Fawatiruk</p>
+                        </div>
+                        <div class="left fs-4 color-two fw-bold">
+                            ${element.b_id}#
+                        </div>
+                        </div>
+                        <div class="content p-4 rounded">
+                            <ul class="p-0">
+                                <li>Phone number: <span> ${element.phone_number} </span></li>
+                                <li>Description: <span>${element.description ? element.description : 'There is no description'}</span></li>
+                                <li>Date: <span>${element.date}</span></li>
+                            </ul>
+                        </div>
+                        <span class="show-more">Show more <i class="fa-solid fa-expand fs-1"></i></span>
+                    </a>
+                    `;
     
-        // إضافة الـ ID إلى قائمة الأيدي المضافة
-        addedIDs.push(element.b_id);
-        } 
+                // إضافة الـ ID إلى قائمة الأيدي المضافة
+                addedIDs.push(element.b_id);
+            } 
         });
             
     });
-        nextElement.classList.add('showEle');
+        nextElement.classList.add('hiddenEle');
 }
 
 
@@ -181,6 +185,7 @@ let storesName = document.querySelectorAll('.user-billinfo .title');
 let infoBox = document.querySelectorAll('.user-billinfo .info-boxes');
 
 storesName.forEach((name) => {
+
 
     sortButtons.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -191,7 +196,7 @@ storesName.forEach((name) => {
     })
 
     fetchData(name, 'ASC');
-
+            
 });
 
 
@@ -205,13 +210,33 @@ storesName.forEach(storename => {
 
             billsContent.classList.remove('showEle')
             billsContent.classList.add('hiddenEle')
-            this.querySelector('i').className = 'fa-solid fa-chevron-up ms-2 fs-3'
+            this.querySelector('i').className = 'fa-solid fa-chevron-down ms-2 fs-3'
             
         }else {
             billsContent.classList.add('showEle')
             billsContent.classList.remove('hiddenEle')
-            this.querySelector('i').className = 'fa-solid fa-chevron-down ms-2 fs-3'
+            this.querySelector('i').className = 'fa-solid fa-chevron-up ms-2 fs-3'
         }
 
     })
 })
+
+
+// User search type 
+
+searchType = document.querySelector('.search-type'); 
+
+
+function checkSearchType() {
+
+    type = searchType.options[searchType.selectedIndex].text
+
+    console.log(type)
+
+    if(type == 'Date') {
+        document.querySelector('.user-search').type = 'date'
+    }else {
+        document.querySelector('.user-search').type = 'search'
+        
+    }
+}
